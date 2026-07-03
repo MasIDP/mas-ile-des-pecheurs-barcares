@@ -1,15 +1,743 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Mas sur l’Île des Pêcheurs</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mas sur l’Île des Pêcheurs au Barcarès</title>
+  <meta name="description" content="Mas typique des anciennes cabanes de pêcheurs au Barcarès. Location de vacances entre étang et mer, avec jardin privatif, piscines, Wi-Fi et climatisation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --sage:#6f8060;
+      --sage-dark:#4f5f45;
+      --sand:#f5efe5;
+      --cream:#fffaf2;
+      --ink:#1f241d;
+      --muted:#6f746a;
+      --white:#ffffff;
+      --shadow:0 22px 55px rgba(31,36,29,.16);
+      --radius:24px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--ink);
+      background:var(--cream);
+      line-height:1.55;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    .container{
+      width:min(1180px, calc(100% - 32px));
+      margin-inline:auto;
+    }
+
+    header{
+      position:fixed;
+      inset:0 0 auto 0;
+      z-index:50;
+      background:rgba(255,250,242,.86);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(111,128,96,.13);
+    }
+
+    .nav{
+      height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:800;
+      letter-spacing:.04em;
+      color:var(--sage-dark);
+      text-transform:uppercase;
+      font-size:.82rem;
+    }
+
+    .logo{
+      width:44px;
+      height:44px;
+      border:2px solid var(--sage);
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      font-size:1.35rem;
+      background:white;
+    }
+
+    nav ul{
+      display:flex;
+      align-items:center;
+      gap:26px;
+      padding:0;
+      margin:0;
+      list-style:none;
+      font-size:.78rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border:none;
+      border-radius:12px;
+      padding:15px 22px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.25s ease;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      font-size:.78rem;
+    }
+
+    .btn-primary{background:var(--sage);color:white}
+    .btn-primary:hover{background:var(--sage-dark);transform:translateY(-2px)}
+    .btn-light{background:var(--cream);color:var(--ink)}
+    .btn-light:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(0,0,0,.12)}
+
+    .hero{
+      min-height:880px;
+      padding-top:78px;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(90deg, rgba(16,22,13,.86) 0%, rgba(16,22,13,.63) 42%, rgba(16,22,13,.16) 100%),
+        url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2200&q=80") center/cover;
+    }
+
+    .hero-content{
+      color:white;
+      padding:90px 0 180px;
+      max-width:720px;
+    }
+
+    .eyebrow{
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-weight:800;
+      font-size:.78rem;
+      color:#e9deca;
+      margin-bottom:18px;
+    }
+
+    h1,h2,h3{
+      font-family:"Playfair Display",serif;
+      line-height:1.03;
+      margin:0;
+    }
+
+    h1{
+      font-size:clamp(3.2rem, 8vw, 6.8rem);
+      letter-spacing:-.05em;
+      margin-bottom:18px;
+    }
+
+    .subtitle{
+      font-size:clamp(1.25rem,2vw,1.9rem);
+      max-width:650px;
+      color:#f3eadc;
+      margin:0 0 28px;
+      font-weight:500;
+    }
+
+    .facts{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px 28px;
+      margin:28px 0 34px;
+      font-weight:700;
+    }
+
+    .fact{display:flex;align-items:center;gap:8px}
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px;
+      margin-bottom:34px;
+    }
+
+    .availability{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      background:white;
+      color:var(--sage-dark);
+      border-radius:16px;
+      padding:16px 22px;
+      font-weight:800;
+      box-shadow:var(--shadow);
+    }
+
+    .booking-card{
+      position:absolute;
+      left:50%;
+      bottom:-80px;
+      transform:translateX(-50%);
+      width:min(1080px, calc(100% - 32px));
+      background:white;
+      border-radius:22px;
+      padding:26px;
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns:1.1fr 1fr 1fr .9fr .8fr;
+      gap:18px;
+      align-items:end;
+    }
+
+    .booking-card h3{
+      font-family:Inter,sans-serif;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:1.2rem;
+      line-height:1.1;
+      margin-bottom:8px;
+    }
+
+    .booking-card p{margin:0;color:var(--muted);font-size:.88rem}
+    label{
+      display:block;
+      font-size:.75rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-weight:800;
+      color:var(--muted);
+      margin-bottom:8px;
+    }
+
+    input,select,textarea{
+      width:100%;
+      border:1px solid #ddd7ca;
+      background:#fff;
+      border-radius:10px;
+      padding:14px 14px;
+      font:inherit;
+      color:var(--ink);
+    }
+
+    .price-box{
+      background:var(--sage);
+      color:white;
+      border-radius:14px;
+      padding:18px;
+      text-align:center;
+      min-height:92px;
+      display:grid;
+      place-items:center;
+      font-weight:800;
+    }
+
+    .price-box small{display:block;font-weight:500;opacity:.88;margin-top:4px}
+
+    section{padding:110px 0}
+    .after-hero{padding-top:130px}
+
+    .amenities{
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      gap:18px;
+      text-align:center;
+    }
+
+    .amenity{
+      padding:16px 8px;
+      color:var(--sage-dark);
+      font-weight:700;
+    }
+
+    .amenity .icon{
+      font-size:2rem;
+      display:block;
+      margin-bottom:8px;
+    }
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:28px;
+      margin-bottom:34px;
+    }
+
+    .section-head h2{
+      font-size:clamp(2.2rem, 4vw, 4rem);
+      color:var(--sage-dark);
+    }
+
+    .section-head p{
+      max-width:520px;
+      color:var(--muted);
+      margin:0;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .image-card{
+      min-height:270px;
+      border-radius:22px;
+      overflow:hidden;
+      position:relative;
+      display:flex;
+      align-items:end;
+      padding:24px;
+      color:white;
+      box-shadow:0 16px 34px rgba(0,0,0,.13);
+      background:center/cover;
+    }
+
+    .image-card:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, transparent 35%, rgba(0,0,0,.75));
+    }
+
+    .image-card div{position:relative;z-index:1}
+    .image-card h3{font-family:Inter,sans-serif;font-size:1rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+
+    .split{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:42px;
+      align-items:center;
+    }
+
+    .panel{
+      background:white;
+      border-radius:var(--radius);
+      padding:34px;
+      box-shadow:0 12px 36px rgba(31,36,29,.08);
+    }
+
+    .map{
+      min-height:410px;
+      border-radius:var(--radius);
+      background:
+        linear-gradient(rgba(255,255,255,.15),rgba(255,255,255,.15)),
+        url("https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1600&q=80") center/cover;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .pin{
+      position:absolute;
+      left:52%;
+      top:45%;
+      transform:translate(-50%,-50%);
+      background:var(--sage);
+      color:white;
+      padding:14px 18px;
+      border-radius:999px;
+      font-weight:900;
+      box-shadow:var(--shadow);
+    }
+
+    .reservation{
+      background:var(--sand);
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+
+    .full{grid-column:1/-1}
+
+    .guide-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .guide-item{
+      background:white;
+      border-radius:18px;
+      padding:24px;
+      border:1px solid rgba(111,128,96,.14);
+    }
+
+    .review{
+      background:white;
+      border-radius:var(--radius);
+      padding:34px;
+      box-shadow:0 12px 36px rgba(31,36,29,.08);
+    }
+
+    .stars{color:#d89b28;font-size:1.35rem;letter-spacing:.05em}
+
+    footer{
+      background:#202719;
+      color:white;
+      padding:56px 0;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.3fr 1fr 1fr;
+      gap:30px;
+    }
+
+    .footer-grid p,.footer-grid a{color:#d8dece}
+
+    .floating-help{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:70;
+      background:var(--sage);
+      color:white;
+      border-radius:18px;
+      padding:14px 18px;
+      box-shadow:var(--shadow);
+      font-weight:800;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    @media(max-width:980px){
+      nav ul{display:none}
+      .hero{min-height:760px}
+      .booking-card{
+        position:relative;
+        bottom:auto;
+        margin:-130px auto 0;
+        left:auto;
+        transform:none;
+        grid-template-columns:1fr 1fr;
+      }
+      .after-hero{padding-top:38px}
+      .amenities{grid-template-columns:repeat(2,1fr)}
+      .cards,.guide-grid{grid-template-columns:1fr 1fr}
+      .split{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr}
+    }
+
+    @media(max-width:640px){
+      .nav{height:68px}
+      .brand span{display:none}
+      .hero{padding-top:68px;min-height:720px}
+      .hero-content{padding:70px 0 170px}
+      .booking-card,.form-grid,.cards,.guide-grid{grid-template-columns:1fr}
+      .section-head{display:block}
+      .amenities{grid-template-columns:1fr 1fr}
+      section{padding:70px 0}
+      .btn{width:100%}
+      .availability{width:100%;justify-content:center;text-align:center}
+    }
+  </style>
 </head>
-
 <body>
-  <h1>Mas sur l’Île des Pêcheurs au Barcarès</h1>
-  <p>Mas typique des anciennes cabanes de pêcheurs au Barcarès</p>
 
-  <button>Voir les disponibilités</button>
-  <button>Réserver</button>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#top">
+      <div class="logo">⛵</div>
+      <span>Île des Pêcheurs<br>Le Barcarès</span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#logement">Le logement</a></li>
+        <li><a href="#equipements">Équipements</a></li>
+        <li><a href="#alentours">Autour de vous</a></li>
+        <li><a href="#guide">Guide</a></li>
+        <li><a href="#avis">Avis</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-primary" href="#reservation">Réserver</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">Location de vacances au Barcarès</div>
+        <h1>Mas sur l’Île des Pêcheurs</h1>
+        <p class="subtitle">Mas typique des anciennes cabanes de pêcheurs au Barcarès</p>
+
+        <div class="facts">
+          <span class="fact">👥 5 voyageurs</span>
+          <span class="fact">🛏️ 2 chambres</span>
+          <span class="fact">🛁 2 salles de bain</span>
+          <span class="fact">📍 Le Barcarès</span>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#reservation">Voir les disponibilités</a>
+          <a class="btn btn-light" href="#reservation">Réserver mon séjour →</a>
+        </div>
+
+        <div class="availability">📅 Prochaine disponibilité : à confirmer selon calendrier Airbnb ✨</div>
+      </div>
+    </div>
+
+    <div class="booking-card" id="reservation">
+      <div>
+        <h3>Estimez<br>votre séjour</h3>
+        <p>Obtenez un tarif instantané selon vos dates et le nombre de voyageurs.</p>
+      </div>
+      <div>
+        <label for="arrival">Arrivée</label>
+        <input id="arrival" type="date">
+      </div>
+      <div>
+        <label for="departure">Départ</label>
+        <input id="departure" type="date">
+      </div>
+      <div>
+        <label for="guests">Voyageurs</label>
+        <select id="guests">
+          <option value="1">1 voyageur</option>
+          <option value="2">2 voyageurs</option>
+          <option value="3">3 voyageurs</option>
+          <option value="4">4 voyageurs</option>
+          <option value="5">5 voyageurs</option>
+        </select>
+      </div>
+      <div class="price-box">
+        <div><span id="price">--- €</span><small id="priceNote">Sélectionnez vos dates</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="after-hero" id="equipements">
+    <div class="container amenities">
+      <div class="amenity"><span class="icon">🌳</span>Terrain privatif<br>230 m²</div>
+      <div class="amenity"><span class="icon">🏊</span>2 piscines<br>& toboggans</div>
+      <div class="amenity"><span class="icon">🌊</span>Plage de l’étang<br>à 100 m</div>
+      <div class="amenity"><span class="icon">🚲</span>Piste cyclable<br>à 2 minutes</div>
+      <div class="amenity"><span class="icon">❄️</span>Climatisation</div>
+      <div class="amenity"><span class="icon">📶</span>Wi‑Fi</div>
+      <div class="amenity"><span class="icon">🅿️</span>Parking privé</div>
+    </div>
+  </section>
+
+  <section id="logement">
+    <div class="container">
+      <div class="section-head">
+        <h2>Un mas entre étang et mer</h2>
+        <p>Un lieu simple, confortable et chaleureux, pensé pour profiter du Barcarès en famille ou entre amis, avec un extérieur agréable et les équipements de la résidence.</p>
+      </div>
+
+      <div class="cards">
+        <a class="image-card" style="background-image:url('https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80')" href="#reservation">
+          <div><h3>Le logement</h3><p>Découvrir le mas</p></div>
+        </a>
+        <a class="image-card" style="background-image:url('https://images.unsplash.com/photo-1572331165267-854da2b10ccc?auto=format&fit=crop&w=900&q=80')" href="#equipements">
+          <div><h3>La résidence</h3><p>Piscines & équipements</p></div>
+        </a>
+        <a class="image-card" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80')" href="#alentours">
+          <div><h3>Autour de vous</h3><p>Plages & bonnes adresses</p></div>
+        </a>
+        <a class="image-card" style="background-image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80')" href="#guide">
+          <div><h3>Guide du logement</h3><p>Infos utiles</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="alentours">
+    <div class="container split">
+      <div>
+        <div class="eyebrow" style="color:var(--sage-dark)">Idéalement situé</div>
+        <h2 style="font-size:clamp(2.4rem,5vw,4.5rem); color:var(--sage-dark)">Entre étang et mer</h2>
+        <p>Un emplacement privilégié sur l’Île des Pêcheurs, à quelques pas de la plage de l’étang et à quelques minutes des plages méditerranéennes.</p>
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Île+des+Pêcheurs+Le+Barcarès" target="_blank" rel="noopener">Voir sur Google Maps</a>
+      </div>
+
+      <div class="map">
+        <div class="pin">📍 Île des Pêcheurs</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reservation">
+    <div class="container split">
+      <div class="panel">
+        <h2 style="font-size:3rem;color:var(--sage-dark);margin-bottom:14px">Demande de réservation</h2>
+        <p>Remplissez vos informations : vous pourrez ensuite envoyer directement votre demande par e-mail. Le paiement en ligne pourra être ajouté plus tard.</p>
+        <p><strong>Tarif de démonstration :</strong> 120 €/nuit + 60 € de frais de ménage. Tu pourras modifier ces montants dans le fichier.</p>
+      </div>
+
+      <form class="panel" onsubmit="sendBooking(event)">
+        <div class="form-grid">
+          <div>
+            <label>Nom</label>
+            <input id="name" required placeholder="Votre nom">
+          </div>
+          <div>
+            <label>Téléphone</label>
+            <input id="phone" placeholder="Votre téléphone">
+          </div>
+          <div>
+            <label>Email</label>
+            <input id="email" type="email" required placeholder="votre@email.fr">
+          </div>
+          <div>
+            <label>Nombre de voyageurs</label>
+            <select id="formGuests">
+              <option>1 voyageur</option>
+              <option>2 voyageurs</option>
+              <option>3 voyageurs</option>
+              <option>4 voyageurs</option>
+              <option>5 voyageurs</option>
+            </select>
+          </div>
+          <div>
+            <label>Arrivée souhaitée</label>
+            <input id="formArrival" type="date">
+          </div>
+          <div>
+            <label>Départ souhaité</label>
+            <input id="formDeparture" type="date">
+          </div>
+          <div class="full">
+            <label>Message</label>
+            <textarea id="message" rows="5" placeholder="Votre message..."></textarea>
+          </div>
+          <div class="full">
+            <button class="btn btn-primary" type="submit">Envoyer ma demande</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section id="guide">
+    <div class="container">
+      <div class="section-head">
+        <h2>Guide du logement</h2>
+        <p>Une zone pratique à enrichir avec tes notices : Wi‑Fi, TV Free, cafetière, climatisation, arrivée autonome et départ.</p>
+      </div>
+
+      <div class="guide-grid">
+        <div class="guide-item"><h3>📶 Wi‑Fi</h3><p>Ajoute ici le nom du réseau et le mot de passe pour les voyageurs.</p></div>
+        <div class="guide-item"><h3>📺 Télévision</h3><p>Ajoute ton tutoriel pour lancer Free TV depuis la Smart TV Philips.</p></div>
+        <div class="guide-item"><h3>☕ Cafetière</h3><p>Ajoute la notice capsule Nespresso de la Create Thera Studio.</p></div>
+        <div class="guide-item"><h3>❄️ Climatisation</h3><p>Ajoute le mode d’emploi de la télécommande.</p></div>
+        <div class="guide-item"><h3>♻️ Départ</h3><p>Rappel du tri, des poubelles, du linge et de la fermeture du logement.</p></div>
+        <div class="guide-item"><h3>💬 Concierge local</h3><p>Bonnes adresses, marchés, plages, activités et contacts utiles.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="avis">
+    <div class="container split">
+      <div>
+        <div class="eyebrow" style="color:var(--sage-dark)">Ils ont séjourné chez nous</div>
+        <h2 style="font-size:clamp(2.4rem,5vw,4.5rem); color:var(--sage-dark)">Avis voyageurs</h2>
+        <p>Tu pourras intégrer ici les meilleurs avis récupérés depuis Airbnb, avec une sélection courte et élégante.</p>
+      </div>
+      <div class="review">
+        <div style="font-size:3rem;font-family:Playfair Display,serif;color:var(--sage-dark)">4,8/5</div>
+        <div class="stars">★★★★★</div>
+        <p>“Séjour parfait ! Le mas est idéalement situé, très bien équipé et le terrain est un vrai plus pour se détendre.”</p>
+        <strong>Sophie · Août</strong>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="container footer-grid">
+    <div>
+      <h2 style="font-size:2.5rem">Mas sur l’Île des Pêcheurs</h2>
+      <p>Mas typique des anciennes cabanes de pêcheurs au Barcarès.</p>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p>Email : <a href="mailto:tonemail@example.com">tonemail@example.com</a></p>
+      <p>Téléphone : <a href="tel:+33000000000">+33 0 00 00 00 00</a></p>
+    </div>
+    <div>
+      <h3>Réservation</h3>
+      <p><a href="#reservation">Vérifier les disponibilités</a></p>
+      <p><a href="https://www.airbnb.fr/rooms/1588950244052987459" target="_blank" rel="noopener">Voir l’annonce Airbnb</a></p>
+    </div>
+  </div>
+</footer>
+
+<a class="floating-help" href="#contact">💬 Besoin d’aide ?</a>
+
+<script>
+  const NIGHT_PRICE = 120;
+  const CLEANING_FEE = 60;
+
+  function calculatePrice(){
+    const arrival = document.getElementById('arrival').value;
+    const departure = document.getElementById('departure').value;
+    const price = document.getElementById('price');
+    const note = document.getElementById('priceNote');
+
+    if(!arrival || !departure){
+      price.textContent = '--- €';
+      note.textContent = 'Sélectionnez vos dates';
+      return;
+    }
+
+    const start = new Date(arrival);
+    const end = new Date(departure);
+    const nights = Math.round((end - start) / (1000 * 60 * 60 * 24));
+
+    if(nights <= 0){
+      price.textContent = '--- €';
+      note.textContent = 'Dates invalides';
+      return;
+    }
+
+    const total = nights * NIGHT_PRICE + CLEANING_FEE;
+    price.textContent = total.toLocaleString('fr-FR') + ' €';
+    note.textContent = nights + ' nuit' + (nights > 1 ? 's' : '') + ' + ménage';
+  }
+
+  document.getElementById('arrival').addEventListener('change', calculatePrice);
+  document.getElementById('departure').addEventListener('change', calculatePrice);
+
+  function sendBooking(event){
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+    const guests = document.getElementById('formGuests').value;
+    const arrival = document.getElementById('formArrival').value;
+    const departure = document.getElementById('formDeparture').value;
+    const message = document.getElementById('message').value;
+
+    const subject = encodeURIComponent('Demande de réservation - Mas sur l’Île des Pêcheurs');
+    const body = encodeURIComponent(
+      `Bonjour,\n\nNouvelle demande de réservation :\n\nNom : ${name}\nTéléphone : ${phone}\nEmail : ${email}\nVoyageurs : ${guests}\nArrivée : ${arrival}\nDépart : ${departure}\n\nMessage :\n${message}\n`
+    );
+
+    window.location.href = `mailto:tonemail@example.com?subject=${subject}&body=${body}`;
+  }
+</script>
+
 </body>
 </html>
