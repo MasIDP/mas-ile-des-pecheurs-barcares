@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mas sur l’Île des Pêcheurs au Barcarès</title>
+  <meta name="description" content="Mas typique des anciennes cabanes de pêcheurs au Barcarès, jusqu’à 7 voyageurs, accès direct à l’étang de Salses-Leucate, plage à 1 km, piscine, terrasse et jardin privatif." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="site-header" id="top">
+  <a href="#top" class="brand">
+    <span class="brand-icon">⛵</span>
+    <span>Mas 680</span>
+  </a>
+
+  <nav class="desktop-nav">
+    <a href="#photos">Photos</a>
+    <a href="#logement">Logement</a>
+    <a href="#reservation">Réserver</a>
+    <a href="#alentours">Alentours</a>
+    <a href="#guide">Guide</a>
+  </nav>
+
+  <a class="header-btn" href="#reservation">Demander une réservation</a>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content reveal">
+      <p class="kicker">Le Barcarès · Île des Pêcheurs</p>
+      <h1>Mas sur l’Île des Pêcheurs</h1>
+      <p class="hero-subtitle">Mas typique des anciennes cabanes de pêcheurs au Barcarès</p>
+
+      <div class="hero-badges">
+        <span>👥 Jusqu’à 7 voyageurs</span>
+        <span>🌊 Accès direct à l’étang de Salses-Leucate</span>
+        <span>🏖️ Plage à 1 km</span>
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn primary" href="#reservation">Voir les disponibilités</a>
+        <a class="btn secondary" href="#photos">Découvrir les photos</a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">Défiler ↓</div>
+  </section>
+
+  <section class="quick-panel container reveal">
+    <div>
+      <strong>7</strong>
+      <span>voyageurs</span>
+    </div>
+    <div>
+      <strong>2</strong>
+      <span>chambres</span>
+    </div>
+    <div>
+      <strong>2</strong>
+      <span>salles de bain</span>
+    </div>
+    <div>
+      <strong>230 m²</strong>
+      <span>terrain privatif</span>
+    </div>
+  </section>
+
+  <section id="photos" class="section container reveal">
+    <div class="section-title">
+      <p class="kicker dark">Galerie</p>
+      <h2>Un aperçu du mas</h2>
+      <p>Terrasse, jardin, cuisine équipée, chambres, salles de bain et piscines de la résidence.</p>
+    </div>
+
+    <div class="airbnb-gallery">
+      <button class="gallery-main" onclick="openLightbox(0)">
+        <img src="images/terrasse-soir.jpg" alt="Terrasse éclairée le soir">
+      </button>
+      <button onclick="openLightbox(1)"><img src="images/jardin-terrasse-jour.jpg" alt="Jardin et terrasse"></button>
+      <button onclick="openLightbox(10)"><img src="images/cuisine-equipee.jpg" alt="Cuisine équipée"></button>
+      <button onclick="openLightbox(12)"><img src="images/chambre-familiale.jpg" alt="Chambre familiale"></button>
+      <button onclick="openLightbox(9)" class="last-thumb">
+        <img src="images/piscine-residence.jpg" alt="Piscine de la résidence">
+        <span>Voir les 20 photos</span>
+      </button>
+    </div>
+  </section>
+
+  <section id="logement" class="section sage-section">
+    <div class="container split reveal">
+      <div>
+        <p class="kicker dark">Le logement</p>
+        <h2>Un mas familial, simple et chaleureux</h2>
+        <p>Profitez d’un extérieur privatif agréable, d’une terrasse conviviale et d’un accès direct à l’étang de Salses-Leucate. Le logement est pensé pour les vacances en famille ou entre amis, jusqu’à 7 personnes.</p>
+
+        <div class="feature-grid">
+          <div>🌳 <strong>Terrain privatif</strong><span>environ 230 m²</span></div>
+          <div>🌊 <strong>Accès direct</strong><span>étang de Salses-Leucate</span></div>
+          <div>🏖️ <strong>Plage</strong><span>à environ 1 km</span></div>
+          <div>❄️ <strong>Climatisation</strong><span>confort en été</span></div>
+          <div>📶 <strong>Wi‑Fi</strong><span>connexion disponible</span></div>
+          <div>🏊 <strong>Piscines</strong><span>résidence avec toboggans</span></div>
+        </div>
+      </div>
+
+      <div class="photo-stack">
+        <img src="images/exterieur-mas.jpg" alt="Extérieur du mas">
+        <img src="images/piece-de-vie-cuisine.jpg" alt="Pièce de vie">
+      </div>
+    </div>
+  </section>
+
+  <section id="reservation" class="section container reveal">
+    <div class="reservation-layout">
+      <div class="reservation-intro">
+        <p class="kicker dark">Réservation directe</p>
+        <h2>Demandez votre séjour gratuitement</h2>
+        <p>Le site ne prend aucun paiement en ligne. Le visiteur envoie simplement une demande par e-mail prérempli, et vous confirmez ensuite les disponibilités et le tarif.</p>
+        <div class="free-box">✅ 0 € d’abonnement · ✅ 0 commission · ✅ 100 % gratuit</div>
+      </div>
+
+      <form class="booking-form" onsubmit="sendBooking(event)">
+        <div class="form-row">
+          <label>Arrivée
+            <input id="arrival" type="date" required>
+          </label>
+          <label>Départ
+            <input id="departure" type="date" required>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>Voyageurs
+            <select id="guests">
+              <option>1 voyageur</option>
+              <option>2 voyageurs</option>
+              <option>3 voyageurs</option>
+              <option>4 voyageurs</option>
+              <option>5 voyageurs</option>
+              <option>6 voyageurs</option>
+              <option>7 voyageurs</option>
+            </select>
+          </label>
+          <label>Téléphone
+            <input id="phone" type="tel" placeholder="Votre numéro">
+          </label>
+        </div>
+
+        <label>Nom
+          <input id="name" required placeholder="Votre nom">
+        </label>
+
+        <label>E-mail
+          <input id="email" type="email" required placeholder="votre@email.fr">
+        </label>
+
+        <label>Message
+          <textarea id="message" rows="4" placeholder="Votre message..."></textarea>
+        </label>
+
+        <div class="estimate">
+          <span>Estimation</span>
+          <strong id="estimate">Sélectionnez vos dates</strong>
+          <small>Base modifiable dans script.js</small>
+        </div>
+
+        <button class="btn primary full" type="submit">Envoyer ma demande par e-mail</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="alentours" class="section container reveal">
+    <div class="section-title">
+      <p class="kicker dark">Autour de vous</p>
+      <h2>Entre étang, plage et activités</h2>
+      <p>Une situation idéale pour profiter du Barcarès, de l’étang de Salses-Leucate et des infrastructures de la résidence.</p>
+    </div>
+
+    <div class="cards">
+      <article><span>🌊</span><h3>Étang de Salses-Leucate</h3><p>Accès direct depuis le secteur du mas.</p></article>
+      <article><span>🏖️</span><h3>Plage à 1 km</h3><p>Parfait pour les journées baignade.</p></article>
+      <article><span>🏊</span><h3>Espace aquatique</h3><p>Piscines, pataugeoire et toboggans.</p></article>
+      <article><span>🍽️</span><h3>Restaurants & commerces</h3><p>Bonnes adresses à ajouter dans le guide.</p></article>
+    </div>
+
+    <a class="map-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Île+des+Pêcheurs+Le+Barcarès">
+      Ouvrir l’itinéraire Google Maps →
+    </a>
+  </section>
+
+  <section id="guide" class="section guide-section reveal">
+    <div class="container">
+      <div class="section-title">
+        <p class="kicker dark">Guide voyageurs</p>
+        <h2>Tout pour un séjour simple</h2>
+        <p>Zone à enrichir progressivement avec tes notices : TV Free, climatisation, cafetière, tri des déchets, arrivée et départ.</p>
+      </div>
+
+      <div class="guide-grid">
+        <div><h3>📶 Wi‑Fi</h3><p>Ajoute ici le réseau et le mot de passe.</p></div>
+        <div><h3>📺 Télévision</h3><p>Tutoriel Free TV sur Smart TV Philips.</p></div>
+        <div><h3>☕ Cafetière</h3><p>Capsules type Nespresso uniquement.</p></div>
+        <div><h3>❄️ Climatisation</h3><p>Mode d’emploi de la télécommande.</p></div>
+        <div><h3>♻️ Départ</h3><p>Tri, poubelles, linge et fermeture du logement.</p></div>
+        <div><h3>💬 Contact</h3><p>Une question ? Contact par téléphone, mail ou WhatsApp.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-content">
+    <div>
+      <h2>Mas sur l’Île des Pêcheurs</h2>
+      <p>Mas typique des anciennes cabanes de pêcheurs au Barcarès.</p>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <a href="mailto:mas680.iledespecheurs@gmail.com">mas680.iledespecheurs@gmail.com</a>
+      <a href="tel:+33679850406">06 79 85 04 06</a>
+      <a href="https://wa.me/33679850406" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <div>
+      <h3>Réservation</h3>
+      <a href="#reservation">Demander une réservation</a>
+      <a href="https://www.airbnb.fr/rooms/1588950244052987459" target="_blank" rel="noopener">Voir l’annonce Airbnb</a>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <button class="lightbox-prev" onclick="changePhoto(-1)">‹</button>
+  <img id="lightbox-img" src="" alt="Photo du mas">
+  <button class="lightbox-next" onclick="changePhoto(1)">›</button>
+  <div class="lightbox-count" id="lightbox-count"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
